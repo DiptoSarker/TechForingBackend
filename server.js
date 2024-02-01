@@ -22,7 +22,7 @@ const jobSchema = new mongoose.Schema({
 const Job = mongoose.model("Job", jobSchema);
 
 mongoose.connect(
-  "mongodb+srv://diptosarker:Dipto2018331034@cluster0.pwg8g6g.mongodb.net/TechForing?retryWrites=true&w=majority",
+  "mongodb+srv://diptosarker:Dipto2018331034@cluster0.pwg8g6g.mongodb.net/your-database-name?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
