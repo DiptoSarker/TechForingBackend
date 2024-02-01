@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
 const signinController = async (req, res) => {
@@ -8,9 +7,9 @@ const signinController = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user) {
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-
-      if (isPasswordValid) {
+      // Note: This is not a secure way to compare passwords.
+      // In a real-world scenario, use a secure password hashing library like bcrypt.
+      if (password === user.password) {
         res.json({ message: "User signed in successfully", user });
       } else {
         res.status(401).json({ message: "Invalid email or password" });

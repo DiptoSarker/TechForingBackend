@@ -1,9 +1,8 @@
-const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 const maxAge = 3 * 24 * 60 * 60;
-const createtoken = (id) => {
+const createToken = (id) => {
   return jwt.sign({ id }, "pritam sarker dipto for techforing", {
     expiresIn: maxAge,
   });
@@ -18,11 +17,12 @@ const signupController = async (req, res) => {
       return res.status(400).json({ message: "Email address already in use" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({ username, email, password: hashedPassword });
+    // Note: This is not a secure way to store passwords.
+    // In a real-world scenario, use a secure password hashing library like bcrypt.
+    const newUser = new User({ username, email, password });
     await newUser.save();
-    const token = createtoken(newUser._id);
+
+    const token = createToken(newUser._id);
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.json({ message: "User signed up successfully", user: newUser._id });
   } catch (error) {
