@@ -17,8 +17,7 @@ const signupController = async (req, res) => {
       return res.status(400).json({ message: "Email address already in use" });
     }
 
-    // Note: This is not a secure way to store passwords.
-    // In a real-world scenario, use a secure password hashing library like bcrypt.
+    // First I used bcrypt but faced some issues in the deploying
     const newUser = new User({ username, email, password });
     await newUser.save();
 

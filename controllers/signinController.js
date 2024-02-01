@@ -7,8 +7,7 @@ const signinController = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user) {
-      // Note: This is not a secure way to compare passwords.
-      // In a real-world scenario, use a secure password hashing library like bcrypt.
+      // First I used bcrypt but faced some issues in the deploying
       if (password === user.password) {
         res.json({ message: "User signed in successfully", user });
       } else {

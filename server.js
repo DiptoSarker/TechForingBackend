@@ -44,7 +44,6 @@ db.once("open", async () => {
         { title: "Job 2", description: "This is the second job" },
         { title: "Job 3", description: "This is the third job" },
         { title: "Job 4", description: "This is the fourth job" },
-        // Add more default jobs as needed
       ];
 
       await Job.insertMany(defaultJobs);
@@ -54,8 +53,6 @@ db.once("open", async () => {
     console.error("Error adding default jobs:", error);
   }
 });
-
-// Rest of your code remains unchanged...
 
 // Endpoint to get all jobs
 app.get("/jobs", async (req, res) => {
